@@ -163,7 +163,7 @@ public class OCR extends OCRCore {
 
         // bigger first.
 
-        Collections.sort(all, new BiggerFirst());
+        Collections.sort(all, new BiggerFirst(all));
 
         // big images eat small ones
 

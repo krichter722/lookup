@@ -19,17 +19,28 @@ import com.github.axet.lookup.proc.NCC;
 public class OCRCore {
 
     static class BiggerFirst implements Comparator<FontSymbolLookup> {
+        int maxSize;
+        int maxSize2;
+
+        public BiggerFirst(List<FontSymbolLookup> list) {
+            maxSize = 0;
+
+            for (FontSymbolLookup l : list) {
+                maxSize = Math.max(maxSize, l.size());
+            }
+
+            maxSize2 = maxSize / 2;
+        }
 
         @Override
         public int compare(FontSymbolLookup arg0, FontSymbolLookup arg1) {
-            int o = Math.max(arg0.size(), arg1.size());
+            int r = LessCompare.compareBigFirst(arg0.size(), arg1.size(), maxSize2);
 
-            int r = LessCompare.compareBigFirst(arg0.size(), arg1.size(), o / 2);
-
-            // beeter qulity goes first
+            // better quality goes first
             if (r == 0)
                 r = LessCompare.compareBigFirst(arg0.g, arg1.g);
 
+            // bigger items goes first
             if (r == 0)
                 r = LessCompare.compareBigFirst(arg0.size(), arg1.size());
 
