@@ -85,7 +85,7 @@ public class OCRCore {
         detector.setGaussianKernelRadius(1f);
     }
 
-    List<FontSymbol> getSymbols() {
+    public List<FontSymbol> getSymbols() {
         List<FontSymbol> list = new ArrayList<FontSymbol>();
 
         for (FontFamily f : fontFamily.values()) {
@@ -95,7 +95,7 @@ public class OCRCore {
         return list;
     }
 
-    List<FontSymbol> getSymbols(String fontFamily) {
+    public List<FontSymbol> getSymbols(String fontFamily) {
         return this.fontFamily.get(fontFamily);
     }
 
