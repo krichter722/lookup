@@ -29,7 +29,7 @@ public class OCRTest {
 
         // recognize using only one family set and rectangle
         ImageBinaryGrey i = new ImageBinaryGrey(Capture.load(OCRTest.class, "full.png"));
-        str = l.recognize(i, 1285, 654, 1343, 677, l.getSymbols("font_1"));
+        str = l.recognize(i, 1285, 654, 1343, 677, "font_1");
         System.out.println(str);
     }
 }
