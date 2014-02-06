@@ -125,5 +125,5 @@ Sometimes you need specify two different image for one symbol (if image / font s
         <dependency>
           <groupId>com.github.axet</groupId>
           <artifactId>lookup</artifactId>
-          <version>0.1.31</version>
+          <version>0.2.0</version>
         </dependency>
