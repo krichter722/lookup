@@ -4,11 +4,14 @@ import java.awt.image.BufferedImage;
 
 public abstract class ImageBinaryScale {
 
+    // original image
     public ImageBinary image;
+    // scaled buffered image
     public BufferedImage scaleBuf;
+    // scaled binary
     public ImageBinary scaleBin;
 
-    // scale
+    // scale 0.5f for 50%
     public double s = 0;
     // blur kernel size
     public int k = 0;
@@ -36,4 +39,22 @@ public abstract class ImageBinaryScale {
     }
 
     abstract public void rescale();
+
+    /**
+     * default image width for scale image is scale image width
+     * 
+     * @return
+     */
+    public int getWidth() {
+        return scaleBuf.getWidth();
+    }
+
+    /**
+     * default image height for scale image is scale image height
+     * 
+     * @return
+     */
+    public int getHeight() {
+        return scaleBuf.getHeight();
+    }
 }

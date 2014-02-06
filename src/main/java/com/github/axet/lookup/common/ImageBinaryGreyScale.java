@@ -8,6 +8,10 @@ public class ImageBinaryGreyScale extends ImageBinaryScale {
 
     public ImageBinaryGreyScale(BufferedImage i) {
         image = new ImageBinaryGrey(i);
+        s = 1f;
+        k = 0;
+        scaleBuf = i;
+        scaleBin = image;
     }
 
     /**
