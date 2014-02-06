@@ -154,12 +154,14 @@ public class OCR extends OCRCore {
     }
 
     public String recognize(ImageBinary i, int x1, int y1, int x2, int y2, List<FontSymbol> list) {
-        String str = "";
-
         List<FontSymbolLookup> all = findAll(list, i, x1, y1, x2, y2);
 
+        return recognize(all);
+    }
+
+    public String recognize(List<FontSymbolLookup> all) {
         if (all.size() == 0)
-            return str;
+            return null;
 
         // bigger first.
 
@@ -184,6 +186,7 @@ public class OCR extends OCRCore {
 
         // calculate rows
 
+        String str = "";
         {
             int x = all.get(0).x;
             int cx = 0;
