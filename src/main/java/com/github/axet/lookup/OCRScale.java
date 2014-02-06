@@ -77,13 +77,20 @@ public class OCRScale extends OCR {
             scale(i, s.image);
         }
 
-        // before this point we operating on original image pixels. after it, we are
+        // before this point we operating on original image pixels. after it, we
+        // are
         // operating on scaled coords
 
         x1 *= s;
         y1 *= s;
         x2 *= s;
         y2 *= s;
+
+        // rounding can be 1 pixels off images end
+        if (x2 >= i.getWidth())
+            x2 = i.getWidth() - 1;
+        if (y2 >= i.getHeight())
+            y2 = i.getHeight() - 1;
 
         List<FontSymbolLookup> all = findAll(list, i.scaleBin, x1, y1, x2, y2);
 
