@@ -160,8 +160,10 @@ public class OCR extends OCRCore {
     }
 
     public String recognize(List<FontSymbolLookup> all) {
+        String str = "";
+
         if (all.size() == 0)
-            return null;
+            return str;
 
         // bigger first.
 
@@ -186,7 +188,6 @@ public class OCR extends OCRCore {
 
         // calculate rows
 
-        String str = "";
         {
             int x = all.get(0).x;
             int cx = 0;
