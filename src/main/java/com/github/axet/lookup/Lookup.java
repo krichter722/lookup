@@ -20,6 +20,10 @@ public class Lookup {
         public NotFound() {
             super("NotFound");
         }
+
+        public NotFound(String s) {
+            super(s);
+        }
     }
 
     // convert
@@ -186,7 +190,7 @@ public class Lookup {
 
         return dest;
     }
-    
+
     static public BufferedImage filterBlur(BufferedImage bi, int blurKernel) {
         BufferedImage buff = new BufferedImage(bi.getWidth(), bi.getHeight(), bi.getType());
 

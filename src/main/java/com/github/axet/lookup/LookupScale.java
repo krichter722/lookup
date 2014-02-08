@@ -21,10 +21,10 @@ public class LookupScale {
 
     // minimum scale used
     public double s = 0;
-
-    int defaultBlurKernel;
-    float gg;
-    float g;
+    // blur kernel
+    public int k;
+    public float gg;
+    public float g;
 
     /**
      * 
@@ -40,7 +40,7 @@ public class LookupScale {
      */
     public LookupScale(double s, int blurKernel, float gg, float g) {
         this.s = s;
-        this.defaultBlurKernel = blurKernel;
+        this.k = blurKernel;
         this.gg = gg;
         this.g = g;
     }
@@ -168,11 +168,11 @@ public class LookupScale {
         }
 
         if (s != template.s) {
-            template.rescale(s, defaultBlurKernel);
+            template.rescale(s, k);
         }
 
         if (s != image.s) {
-            image.rescale(s, defaultBlurKernel);
+            image.rescale(s, k);
         }
     }
 }
