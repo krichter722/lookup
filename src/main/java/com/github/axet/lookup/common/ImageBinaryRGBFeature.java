@@ -4,11 +4,14 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 
+import com.github.axet.lookup.common.ImageBinaryChannel.ChannelType;
+
 /**
- * Container for ImageBinary and Feature class for each channel (rgb channels here)
+ * Container for ImageBinary and Feature class for each channel (rgb channels
+ * here)
  * 
  * @author axet
- *
+ * 
  */
 public class ImageBinaryRGBFeature implements ImageBinaryFeature {
 
@@ -34,9 +37,9 @@ public class ImageBinaryRGBFeature implements ImageBinaryFeature {
 
     public void init(BufferedImage img) {
         image = new RGBImage();
-        r = new ImageBinaryChannelFeature();
-        g = new ImageBinaryChannelFeature();
-        b = new ImageBinaryChannelFeature();
+        r = new ImageBinaryChannelFeature(ChannelType.RED);
+        g = new ImageBinaryChannelFeature(ChannelType.GREEN);
+        b = new ImageBinaryChannelFeature(ChannelType.BLUE);
 
         list = Arrays.asList(new ImageBinaryChannelFeature[] { r, g, b });
 
