@@ -94,23 +94,21 @@ public class OCR extends OCRCore {
     }
 
     public void loadFontSymbol(String fontName, String fontSymbol, InputStream is) {
-        BufferedImage b = Capture.load(is);
-
         FontFamily ff = fontFamily.get(fontName);
         if (ff == null) {
             ff = new FontFamily(fontName);
             fontFamily.put(fontName, ff);
         }
-
-        // b = prepareImageCrop(b);
-
-        FontSymbol f = new FontSymbol(ff, fontSymbol, b);
-
+        FontSymbol f = loadFontSymbol(ff, fontSymbol, is);
         ff.add(f);
     }
 
+    public FontSymbol loadFontSymbol(FontFamily ff, String fontSymbol, InputStream is) {
+        BufferedImage bi = Capture.load(is);
+        return new FontSymbol(ff, fontSymbol, bi);
+    }
+
     public String recognize(BufferedImage bi) {
-        // bi = prepareImage(bi);
         ImageBinary i = new ImageBinaryGrey(bi);
 
         return recognize(i);
