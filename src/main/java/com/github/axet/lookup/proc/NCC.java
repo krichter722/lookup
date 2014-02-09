@@ -34,6 +34,9 @@ import com.github.axet.lookup.common.ImageMultiplySum;
  */
 public class NCC {
 
+    public static class WrongChannelType extends RuntimeException {
+    }
+
     static public GPoint lookup(BufferedImage i, BufferedImage t, float m) {
         List<GPoint> list = lookupAll(i, t, m);
 
@@ -113,7 +116,13 @@ public class NCC {
         double g = Double.MAX_VALUE;
 
         for (int i = 0; i < ii; i++) {
-            double gg = gamma(ci.get(i), ct.get(i), x, y);
+            ImageBinaryChannel cct = ct.get(i);
+            ImageBinaryChannel cci = ci.get(i);
+
+            if (!cct.type.equals(cci.type))
+                throw new WrongChannelType();
+
+            double gg = gamma(cci, cct, x, y);
 
             if (gg < m)
                 return null;
@@ -133,7 +142,13 @@ public class NCC {
         double g = 0;
 
         for (int i = 0; i < ii; i++) {
-            g += gamma(ci.get(i), ct.get(i), x, y);
+            ImageBinaryChannel cct = ct.get(i);
+            ImageBinaryChannel cci = ci.get(i);
+
+            if (!cct.type.equals(cci.type))
+                throw new WrongChannelType();
+
+            g += gamma(cci, cct, x, y);
         }
 
         g /= ii;
@@ -150,7 +165,13 @@ public class NCC {
         double g = Double.MAX_VALUE;
 
         for (int i = 0; i < ii; i++) {
-            g = Math.min(g, gamma(ci.get(i), ct.get(i), x, y));
+            ImageBinaryChannel cct = ct.get(i);
+            ImageBinaryChannel cci = ci.get(i);
+
+            if (!cct.type.equals(cci.type))
+                throw new WrongChannelType();
+
+            g = Math.min(g, gamma(cci, cct, x, y));
         }
 
         return g;
