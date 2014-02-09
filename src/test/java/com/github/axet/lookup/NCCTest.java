@@ -11,12 +11,12 @@ import com.github.axet.lookup.proc.NCC;
 public class NCCTest {
 
     public static void main(String[] args) {
-        BufferedImage image = Capture.load("/Users/axet/Documents/1391947022178.png");
-        BufferedImage template = Capture.load("/Users/axet/Documents/1391947064280.png");
+        BufferedImage image = Capture.load(OCRTest.class, "cyclopst1.png");
+        BufferedImage template = Capture.load(OCRTest.class, "cyclopst3.png");
 
         // rgb image lookup
         {
-            List<GPoint> pp = NCC.lookupAll(new ImageBinaryRGB(image), new ImageBinaryRGB(template), 0.7f);
+            List<GPoint> pp = NCC.lookupAll(new ImageBinaryRGB(image), new ImageBinaryRGB(template), 0.9f);
 
             for (GPoint p : pp) {
                 System.out.println(p);
@@ -25,7 +25,7 @@ public class NCCTest {
 
         // grey image lookup
         {
-            List<GPoint> pp = NCC.lookupAll(new ImageBinaryGrey(image), new ImageBinaryGrey(template), 0.7f);
+            List<GPoint> pp = NCC.lookupAll(new ImageBinaryGrey(image), new ImageBinaryGrey(template), 0.9f);
 
             for (GPoint p : pp) {
                 System.out.println(p);
