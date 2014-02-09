@@ -74,8 +74,8 @@ public class Capture {
         Rectangle r = new Rectangle(image.getWidth(), image.getHeight());
         r.x += boundsSize;
         r.y += boundsSize;
-        r.width -= boundsSize;
-        r.height -= boundsSize;
+        r.width -= boundsSize * 2;
+        r.height -= boundsSize * 2;
         return crop(image, r);
     }
 
