@@ -41,11 +41,9 @@ public class OCR extends OCRCore {
      * Load fonts / symbols from a class directory or jar file
      * 
      * @param c
-     *            class name, corresponded to the resources.
-     *            com.example.MyApp.class
+     *            class name, corresponded to the resources. com.example.MyApp.class
      * @param path
-     *            path to the fonts folder. directory should only contain
-     *            folders with fonts which to load
+     *            path to the fonts folder. directory should only contain folders with fonts which to load
      * 
      */
     public void loadFontsDirectory(Class<?> c, File path) {
@@ -61,11 +59,9 @@ public class OCR extends OCRCore {
      * Load specified font family to load
      * 
      * @param c
-     *            class name, corresponded to the resources.
-     *            com.example.MyApp.class
+     *            class name, corresponded to the resources. com.example.MyApp.class
      * @param path
-     *            path to the fonts folder. directory should only contain
-     *            folders with fonts which to load.
+     *            path to the fonts folder. directory should only contain folders with fonts which to load.
      * @param name
      *            name of the font to load
      * 
@@ -200,7 +196,7 @@ public class OCR extends OCRCore {
                 // if we drop back, then we have a end of line
                 if (s.x < x)
                     str += "\n";
-                x = s.x;
+                x = s.x + s.getWidth();
                 cx = s.getWidth();
                 str += s.fs.fontSymbol;
             }
