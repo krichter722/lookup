@@ -31,8 +31,8 @@ import org.apache.commons.lang.StringUtils;
  */
 public class ClassResources {
 
-    Class<?> c;
-    File path;
+    public Class<?> c;
+    public File path;
 
     public ClassResources(Class<?> c) {
         this.c = c;
