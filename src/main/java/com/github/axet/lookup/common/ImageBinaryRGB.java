@@ -20,7 +20,7 @@ public class ImageBinaryRGB implements ImageBinary {
     public ImageBinaryChannel g;
     public ImageBinaryChannel b;
 
-    List<ImageBinaryChannel> list;
+    public List<ImageBinaryChannel> list;
 
     public ImageBinaryRGB(BufferedImage img) {
         image = new RGBImage();

@@ -7,8 +7,7 @@ import java.util.List;
 import com.github.axet.lookup.common.ImageBinaryChannel.ChannelType;
 
 /**
- * Container for ImageBinary and Feature class for each channel (rgb channels
- * here)
+ * Container for ImageBinary and Feature class for each channel (rgb channels here)
  * 
  * @author axet
  * 
@@ -20,7 +19,7 @@ public class ImageBinaryRGBFeature implements ImageBinaryFeature {
     public ImageBinaryChannelFeature g;
     public ImageBinaryChannelFeature b;
 
-    List<ImageBinaryChannelFeature> list;
+    public List<ImageBinaryChannelFeature> list;
 
     public ImageBinaryRGBFeature(BufferedImage img, double threshold) {
         init(img);

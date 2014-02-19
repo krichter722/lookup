@@ -9,9 +9,8 @@ import com.github.axet.lookup.common.ImageBinaryGreyScale;
 import com.github.axet.lookup.common.ImageBinaryScale;
 
 /**
- * For big images you may want scale booth image and template image similarly.
- * (lets say booth reduce by 2x, you will still have same recognitionz quality
- * but it goes twice faster on recognition step)
+ * For big images you may want scale booth image and template image similarly. (lets say booth reduce by 2x, you will
+ * still have same recognitionz quality but it goes twice faster on recognition step)
  * 
  * @author axet
  * 
@@ -19,7 +18,7 @@ import com.github.axet.lookup.common.ImageBinaryScale;
 public class OCRScale extends OCR {
 
     public double s = 0;
-    int defaultBlurKernel;
+    public int defaultBlurKernel;
 
     /**
      * 

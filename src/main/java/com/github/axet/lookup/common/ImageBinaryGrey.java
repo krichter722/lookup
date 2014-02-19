@@ -18,7 +18,7 @@ public class ImageBinaryGrey implements ImageBinary {
     public GrayImage gi;
     public ImageBinaryChannel gray;
 
-    List<ImageBinaryChannel> list;
+    public List<ImageBinaryChannel> list;
 
     public ImageBinaryGrey(BufferedImage img) {
         gi = new GrayImage();
