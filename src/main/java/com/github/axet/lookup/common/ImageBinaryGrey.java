@@ -4,11 +4,13 @@ import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import java.util.List;
 
+import com.github.axet.lookup.common.ImageBinaryChannel.ChannelType;
+
 /**
  * Container for ImageBinary class for each channel (one gray channel here)
  * 
  * @author axet
- *
+ * 
  */
 
 public class ImageBinaryGrey implements ImageBinary {
@@ -20,7 +22,7 @@ public class ImageBinaryGrey implements ImageBinary {
 
     public ImageBinaryGrey(BufferedImage img) {
         gi = new GrayImage();
-        gray = new ImageBinaryChannel();
+        gray = new ImageBinaryChannel(ChannelType.GREY);
 
         list = Arrays.asList(new ImageBinaryChannel[] { gray });
 
