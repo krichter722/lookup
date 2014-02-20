@@ -96,7 +96,7 @@ public class OCRScale extends OCR {
         return recognize(all);
     }
 
-    void scale(ImageBinaryScale image, ImageBinaryScale template) {
+    public void scale(ImageBinaryScale image, ImageBinaryScale template) {
         if (s == 0) {
             s = template.s;
         }
