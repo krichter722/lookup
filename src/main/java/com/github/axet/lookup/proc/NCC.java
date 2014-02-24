@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.github.axet.lookup.Capture;
 import com.github.axet.lookup.Lookup.NotFound;
 import com.github.axet.lookup.common.GFirst;
 import com.github.axet.lookup.common.GPoint;

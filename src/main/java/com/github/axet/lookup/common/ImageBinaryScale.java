@@ -76,7 +76,10 @@ public abstract class ImageBinaryScale {
     }
 
     ImageBinary rescaleCrop(BufferedImage i) {
-        return rescale(Capture.crop(i, 1));
+        if (i.getHeight() < 3 || i.getWidth() < 3)
+            return rescale(i);
+        else
+            return rescale(Capture.crop(i, 1));
     }
 
     abstract public ImageBinary rescale(BufferedImage i);
