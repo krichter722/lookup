@@ -14,10 +14,10 @@ public class FontSymbol {
     }
 
     public int getHeight() {
-        return image.scaleBuf.getHeight();
+        return image.image.getHeight();
     }
 
     public int getWidth() {
-        return image.scaleBuf.getWidth();
+        return image.image.getWidth();
     }
 }

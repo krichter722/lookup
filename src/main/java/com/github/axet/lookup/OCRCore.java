@@ -106,9 +106,11 @@ public class OCRCore {
         List<FontSymbolLookup> l = new ArrayList<FontSymbolLookup>();
 
         for (FontSymbol fs : list) {
-            List<GPoint> ll = NCC.lookupAll(bi, x1, y1, x2, y2, fs.image.scaleBin, threshold);
-            for (GPoint p : ll)
-                l.add(new FontSymbolLookup(fs, p.x, p.y, p.g));
+            for (ImageBinary imageScaleBin : fs.image.scales) {
+                List<GPoint> ll = NCC.lookupAll(bi, x1, y1, x2, y2, imageScaleBin, threshold);
+                for (GPoint p : ll)
+                    l.add(new FontSymbolLookup(fs, p.x, p.y, p.g));
+            }
         }
 
         return l;

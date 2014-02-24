@@ -27,20 +27,17 @@ public class ImageBinaryGreyScaleRGB extends ImageBinaryScale {
     public ImageBinaryGreyScaleRGB(BufferedImage i, int scaleSize, int blurKernel) {
         image = new ImageBinaryRGB(i);
 
-        rescale(scaleSize, blurKernel);
+        rescale1(scaleSize, blurKernel);
     }
 
     public ImageBinaryGreyScaleRGB(BufferedImage i, double scale, int blurKernel) {
         image = new ImageBinaryRGB(i);
 
-        s = scale;
-        k = blurKernel;
-
-        rescale();
+        rescale1(scale, blurKernel);
     }
 
-    public void rescale() {
-        scaleBuf = Lookup.scale(image.getImage(), s, k);
-        scaleBin = new ImageBinaryRGB(scaleBuf);
+    public ImageBinary rescale(BufferedImage i) {
+        return new ImageBinaryRGB(i);
     }
+
 }

@@ -101,37 +101,41 @@ public class LookupScale {
         int sx2 = (int) (x2 * s);
         int sy2 = (int) (y2 * s);
 
-        if (sy2 >= image.scaleBin.getHeight())
-            sy2 = image.scaleBin.getHeight() - 1;
-        if (sx2 >= image.scaleBin.getWidth())
-            sx2 = image.scaleBin.getWidth() - 1;
-
-        List<GPoint> list = NCC.lookupAll(image.scaleBin, sx1, sy1, sx2, sy2, template.scaleBin, gg);
-
-        int mx = (int) (1 / s) + 1;
-        int my = (int) (1 / s) + 1;
-
         List<GSPoint> result = new ArrayList<GSPoint>();
 
-        for (GPoint p : list) {
-            Point p1 = new Point(p);
+        for (ImageBinary imageScaleBin : image.scales) {
+            if (sy2 >= imageScaleBin.getHeight())
+                sy2 = imageScaleBin.getHeight() - 1;
+            if (sx2 >= imageScaleBin.getWidth())
+                sx2 = imageScaleBin.getWidth() - 1;
 
-            p1.x = (int) (p1.x / s - mx);
-            p1.y = (int) (p1.y / s - mx);
+            for (ImageBinary templateScaleBin : template.scales) {
+                List<GPoint> list = NCC.lookupAll(imageScaleBin, sx1, sy1, sx2, sy2, templateScaleBin, gg);
 
-            Point p2 = new Point(p1);
-            p2.x = template.image.getWidth() - 1 + p2.x + 2 * mx;
-            p2.y = template.image.getHeight() - 1 + p2.y + 2 * my;
+                int mx = (int) (1 / s) + 1;
+                int my = (int) (1 / s) + 1;
 
-            if (p2.x >= image.image.getWidth())
-                p2.x = image.image.getWidth() - 1;
-            if (p2.y >= image.image.getHeight())
-                p2.y = image.image.getHeight() - 1;
+                for (GPoint p : list) {
+                    Point p1 = new Point(p);
 
-            List<GPoint> list2 = NCC.lookupAll(image.image, p1.x, p1.y, p2.x, p2.y, template.image, g);
+                    p1.x = (int) (p1.x / s - mx);
+                    p1.y = (int) (p1.y / s - mx);
 
-            for (GPoint g : list2) {
-                result.add(new GSPoint(g, p.g));
+                    Point p2 = new Point(p1);
+                    p2.x = template.image.getWidth() - 1 + p2.x + 2 * mx;
+                    p2.y = template.image.getHeight() - 1 + p2.y + 2 * my;
+
+                    if (p2.x >= image.image.getWidth())
+                        p2.x = image.image.getWidth() - 1;
+                    if (p2.y >= image.image.getHeight())
+                        p2.y = image.image.getHeight() - 1;
+
+                    List<GPoint> list2 = NCC.lookupAll(image.image, p1.x, p1.y, p2.x, p2.y, template.image, g);
+
+                    for (GPoint g : list2) {
+                        result.add(new GSPoint(g, p.g));
+                    }
+                }
             }
         }
 
@@ -168,11 +172,11 @@ public class LookupScale {
         }
 
         if (s != template.s) {
-            template.rescale(s, k);
+            template.rescale4(s, k);
         }
 
         if (s != image.s) {
-            image.rescale(s, k);
+            image.rescale1(s, k);
         }
     }
 }
