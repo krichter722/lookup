@@ -115,8 +115,8 @@ public class LookupScale {
             for (ImageBinary templateScaleBin : template.scales) {
                 List<GPoint> list = NCC.lookupAll(imageScaleBin, sx1, sy1, ssx2, ssy2, templateScaleBin, gg);
 
-                int mx = (int) (1 / s) + 1;
-                int my = (int) (1 / s) + 1;
+                int mx = (int) (1 / s) + 2;
+                int my = (int) (1 / s) + 2;
 
                 for (GPoint p : list) {
                     Point p1 = new Point(p);
