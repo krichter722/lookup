@@ -22,13 +22,13 @@ public class ImageBinaryGreyScale extends ImageBinaryScale {
     public ImageBinaryGreyScale(BufferedImage i, int scaleSize, int blurKernel) {
         image = new ImageBinaryGrey(i);
 
-        rescale1(scaleSize, blurKernel);
+        rescale(scaleSize, blurKernel);
     }
 
     public ImageBinaryGreyScale(BufferedImage i, double scale, int blurKernel) {
         image = new ImageBinaryGrey(i);
 
-        rescale1(scale, blurKernel);
+        rescale(scale, blurKernel);
     }
 
     public ImageBinary rescale(BufferedImage i) {
