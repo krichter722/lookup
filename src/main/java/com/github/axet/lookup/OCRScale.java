@@ -1,10 +1,12 @@
 package com.github.axet.lookup;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.github.axet.lookup.common.FontSymbol;
 import com.github.axet.lookup.common.FontSymbolLookup;
+import com.github.axet.lookup.common.ImageBinary;
 import com.github.axet.lookup.common.ImageBinaryGreyScale;
 import com.github.axet.lookup.common.ImageBinaryScale;
 
@@ -85,13 +87,17 @@ public class OCRScale extends OCR {
         x2 *= s;
         y2 *= s;
 
-        // rounding can be 1 pixels off images end
-        if (x2 >= i.getWidth())
-            x2 = i.getWidth() - 1;
-        if (y2 >= i.getHeight())
-            y2 = i.getHeight() - 1;
+        List<FontSymbolLookup> all = new ArrayList<FontSymbolLookup>();
 
-        List<FontSymbolLookup> all = findAll(list, i.scaleBin, x1, y1, x2, y2);
+        for (ImageBinary iScaleBin : i.scales) {
+            // rounding can be 1 pixels off images end
+            if (x2 >= iScaleBin.getWidth())
+                x2 = iScaleBin.getWidth() - 1;
+            if (y2 >= iScaleBin.getHeight())
+                y2 = iScaleBin.getHeight() - 1;
+
+            all.addAll(findAll(list, iScaleBin, x1, y1, x2, y2));
+        }
 
         return recognize(all);
     }
@@ -102,11 +108,11 @@ public class OCRScale extends OCR {
         }
 
         if (s != template.s) {
-            template.rescale(s, defaultBlurKernel);
+            template.rescale4(s, defaultBlurKernel);
         }
 
         if (s != image.s) {
-            image.rescale(s, defaultBlurKernel);
+            image.rescale1(s, defaultBlurKernel);
         }
     }
 

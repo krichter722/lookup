@@ -10,8 +10,7 @@ public class ImageBinaryGreyScale extends ImageBinaryScale {
         image = new ImageBinaryGrey(i);
         s = 1f;
         k = 0;
-        scaleBuf = i;
-        scaleBin = image;
+        scales.add(image);
     }
 
     /**
@@ -23,20 +22,16 @@ public class ImageBinaryGreyScale extends ImageBinaryScale {
     public ImageBinaryGreyScale(BufferedImage i, int scaleSize, int blurKernel) {
         image = new ImageBinaryGrey(i);
 
-        rescale(scaleSize, blurKernel);
+        rescale1(scaleSize, blurKernel);
     }
 
     public ImageBinaryGreyScale(BufferedImage i, double scale, int blurKernel) {
         image = new ImageBinaryGrey(i);
-        k = blurKernel;
 
-        s = scale;
-
-        rescale();
+        rescale1(scale, blurKernel);
     }
 
-    public void rescale() {
-        scaleBuf = Lookup.scale(image.getImage(), s, k);
-        scaleBin = new ImageBinaryGrey(scaleBuf);
+    public ImageBinary rescale(BufferedImage i) {
+        return new ImageBinaryGrey(i);
     }
 }
