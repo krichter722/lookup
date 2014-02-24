@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.axet.lookup.Capture;
 import com.github.axet.lookup.Lookup;
 
 public abstract class ImageBinaryScale {
@@ -25,8 +26,8 @@ public abstract class ImageBinaryScale {
     // blur kernel size
     public int k = 0;
 
-    public void rescale1(int s, int k) {
-        rescale1(project(s), k);
+    public void rescale(int s, int k) {
+        rescale(project(s), k);
     }
 
     public double project(int s) {
@@ -46,7 +47,7 @@ public abstract class ImageBinaryScale {
      * @param s
      * @param k
      */
-    public void rescale1(double s, int k) {
+    public void rescale(double s, int k) {
         scales.clear();
 
         this.s = s;
@@ -61,13 +62,21 @@ public abstract class ImageBinaryScale {
      * @param s
      * @param k
      */
-    public void rescale4(double s, int k) {
-        rescale1(s, k);
+    public void rescaleMosaic(double s, int k) {
+        scales.clear();
 
-        scales.add(rescale(Lookup.scale(image.getImage(), s, k, +1, 0)));
-        scales.add(rescale(Lookup.scale(image.getImage(), s, k, 0, +1)));
-        scales.add(rescale(Lookup.scale(image.getImage(), s, k, +1, +1)));
+        this.s = s;
+        this.k = k;
 
+        scales.add(rescaleCrop(Lookup.scale(image.getImage(), s, k)));
+        // scales.add(rescaleCrop(Lookup.scale(image.getImage(), s, k, +1, 0)));
+        // scales.add(rescaleCrop(Lookup.scale(image.getImage(), s, k, 0, +1)));
+        scales.add(rescaleCrop(Lookup.scale(image.getImage(), s, k, +1, +1)));
+
+    }
+
+    ImageBinary rescaleCrop(BufferedImage i) {
+        return rescale(Capture.crop(i, 1));
     }
 
     abstract public ImageBinary rescale(BufferedImage i);

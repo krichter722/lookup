@@ -108,11 +108,11 @@ public class OCRScale extends OCR {
         }
 
         if (s != template.s) {
-            template.rescale4(s, defaultBlurKernel);
+            template.rescaleMosaic(s, defaultBlurKernel);
         }
 
         if (s != image.s) {
-            image.rescale1(s, defaultBlurKernel);
+            image.rescale(s, defaultBlurKernel);
         }
     }
 

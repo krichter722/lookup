@@ -104,13 +104,16 @@ public class LookupScale {
         List<GSPoint> result = new ArrayList<GSPoint>();
 
         for (ImageBinary imageScaleBin : image.scales) {
-            if (sy2 >= imageScaleBin.getHeight())
-                sy2 = imageScaleBin.getHeight() - 1;
-            if (sx2 >= imageScaleBin.getWidth())
-                sx2 = imageScaleBin.getWidth() - 1;
+            int ssy2 = sy2;
+            int ssx2 = sx2;
+
+            if (ssy2 >= imageScaleBin.getHeight())
+                ssy2 = imageScaleBin.getHeight() - 1;
+            if (ssx2 >= imageScaleBin.getWidth())
+                ssx2 = imageScaleBin.getWidth() - 1;
 
             for (ImageBinary templateScaleBin : template.scales) {
-                List<GPoint> list = NCC.lookupAll(imageScaleBin, sx1, sy1, sx2, sy2, templateScaleBin, gg);
+                List<GPoint> list = NCC.lookupAll(imageScaleBin, sx1, sy1, ssx2, ssy2, templateScaleBin, gg);
 
                 int mx = (int) (1 / s) + 1;
                 int my = (int) (1 / s) + 1;
@@ -136,6 +139,10 @@ public class LookupScale {
                         result.add(new GSPoint(g, p.g));
                     }
                 }
+
+                // we found something stop looking
+                if (list.size() != 0)
+                    break;
             }
         }
 
@@ -172,11 +179,11 @@ public class LookupScale {
         }
 
         if (s != template.s) {
-            template.rescale4(s, k);
+            template.rescaleMosaic(s, k);
         }
 
         if (s != image.s) {
-            image.rescale1(s, k);
+            image.rescale(s, k);
         }
     }
 }
