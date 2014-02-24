@@ -20,4 +20,8 @@ public class FontSymbol {
     public int getWidth() {
         return image.image.getWidth();
     }
+
+    public String toString() {
+        return fontSymbol;
+    }
 }
