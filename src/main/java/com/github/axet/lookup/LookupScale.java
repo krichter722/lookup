@@ -141,7 +141,7 @@ public class LookupScale {
                 }
 
                 // we found something stop looking
-                if (list.size() != 0)
+                if (result.size() != 0)
                     break;
             }
         }
